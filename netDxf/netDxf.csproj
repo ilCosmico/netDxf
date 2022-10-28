@@ -2,16 +2,16 @@
 
   <PropertyGroup>
     <TargetFrameworks>netstandard2.1</TargetFrameworks>
-    <Version>3.0.2</Version>
+    <Version>3.0.3</Version>
     <Authors>Lorenzo Delana</Authors>
     <Owners>haplokuon</Owners>
     <Company>netDxf</Company>
     <Product />
     <Copyright>Daniel Carvajal © 2022</Copyright>
     <Description>.net Dxf Reader-Writer (NOTE: this is an unofficial modified version)</Description>
-    <SignAssembly>true</SignAssembly>
+    <!-- <SignAssembly>true</SignAssembly>
     <DelaySign>false</DelaySign>
-    <AssemblyOriginatorKeyFile>netDxf.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>netDxf.snk</AssemblyOriginatorKeyFile> -->
     <PackageId>netDxf-devel0</PackageId>
     <PackageProjectUrl>https://github.com/SearchAThing-forks/netDxf</PackageProjectUrl>
     <RepositoryUrl>https://github.com/SearchAThing-forks/netDxf</RepositoryUrl>

@@ -3336,6 +3336,11 @@
             Gets the entity <see cref="T:netDxf.Collections.XDataDictionary">extended data</see>.
             </summary>
         </member>
+        <member name="P:netDxf.DxfObject.Tag">
+            <summary>
+            custom Tag
+            </summary>        
+        </member>
         <member name="M:netDxf.DxfObject.AssignHandle(System.Int64)">
             <summary>
             Assigns a handle to the object based in a integer counter.

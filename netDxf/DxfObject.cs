@@ -126,6 +126,11 @@ namespace netDxf
         {
             get { return this.xData; }
         }
+        
+        /// <summary>
+        /// custom Tag
+        /// </summary>        
+        public object Tag { get; set; } = null;
 
         #endregion
 
