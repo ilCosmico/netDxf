@@ -1,4 +1,4 @@
-#region netDxf library licensed under the MIT License
+﻿#region netDxf library licensed under the MIT License
 // 
 //                       netDxf library
 // Copyright (c) Daniel Carvajal (haplokuon@gmail.com)
@@ -23,21 +23,41 @@
 // 
 #endregion
 
-namespace netDxf.Blocks
+namespace netDxf
 {
     /// <summary>
-    /// Represents the termination element of the block definition.
+    /// Represent a reference to a TableObject.
     /// </summary>
-    internal class EndBlock :
-        DxfObject
+    public class DxfObjectReference
     {
+        private readonly DxfObject reference;
+        private readonly int uses;
+
         /// <summary>
-        /// Initializes a new instance of the <c>BlockEnd</c> class.
+        /// Initializes a new instance of the <c>DxfObjectReference</c> class.
         /// </summary>
-        public EndBlock(DxfObject owner)
-            : base(DxfObjectCode.BlockEnd)
+        /// <param name="reference">DxfObject reference.</param>
+        /// <param name="uses">Number of times the specified reference uses the table object.</param>
+        public DxfObjectReference(DxfObject reference, int uses)
         {
-            this.Owner = owner;
+            this.reference = reference;
+            this.uses = uses;
+        }
+
+        /// <summary>
+        /// Gets the DxfObject that references the table object.
+        /// </summary>
+        public DxfObject Reference
+        {
+            get { return this.reference; }
+        }
+
+        /// <summary>
+        /// Gets the number of times this reference uses the table object.
+        /// </summary>
+        public int Uses
+        {
+            get { return this.uses; }
         }
     }
 }
