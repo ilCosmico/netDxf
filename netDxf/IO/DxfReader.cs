@@ -30,6 +30,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using netDxf.Blocks;
 using netDxf.Collections;
 using netDxf.Entities;
@@ -38,6 +39,7 @@ using netDxf.Objects;
 using netDxf.Tables;
 using netDxf.Units;
 using Attribute = netDxf.Entities.Attribute;
+using Group = netDxf.Objects.Group;
 using Image = netDxf.Entities.Image;
 using Point = netDxf.Entities.Point;
 using Trace = netDxf.Entities.Trace;
@@ -177,7 +179,21 @@ namespace netDxf.IO
                 }
                 else
                 {
-                    if (int.TryParse(dwgCodePage.Split('_')[1], out int codepage))
+                    int codepage = 0;
+                    string[] strings = dwgCodePage.Split('_');
+                    var ok = strings.Length > 1 ? int.TryParse(strings[1], out codepage) : false;
+
+                    if (!ok)
+                    {
+                        ok = Regex.IsMatch(dwgCodePage, ".*([0-9]+).*");
+                        if(ok)
+                        {
+                            var m = Regex.Match(dwgCodePage, ".*(?<code>[0-9]+).*");
+                            codepage = int.Parse(m.Groups["code"].Value);
+                        }
+                    }
+
+                    if (ok)
                     {
                         try
                         {

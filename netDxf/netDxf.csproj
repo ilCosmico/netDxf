@@ -1,7 +1,7 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net48;netstandard2.0;netstandard2.1;netcoreapp3.1;net5.0;net6.0;net8</TargetFrameworks>    
+    <TargetFrameworks>net472;netstandard2.0;netstandard2.1;netcoreapp3.1;net5.0;net6.0;net7.0;net8.0</TargetFrameworks>    
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
 		<PackageId>netDxf-devel0</PackageId>
 		<PackageVersion>3.0.4</PackageVersion>
@@ -11,6 +11,8 @@
 		<PackageTags>net dxf</PackageTags>
 		<PackageProjectUrl>https://github.com/SearchAThing-forks/netDxf</PackageProjectUrl>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<SignAssembly>True</SignAssembly>
+		<AssemblyOriginatorKeyFile>netDxf.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -29,7 +31,7 @@
     <DefineConstants>TRACE</DefineConstants>
   </PropertyGroup>
 
-  <PropertyGroup Condition=" '$(TargetFramework)' == 'net48'">
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net472'">
     <DefineConstants>NET4X</DefineConstants>
   </PropertyGroup>
 
