@@ -300,6 +300,13 @@ namespace netDxf
             new byte[] { 255, 255, 255 }
         };
 
+        private static IReadOnlyList<byte[]> customIndexRgb;
+
+        public static void SetCustomAciIndexRgb(IReadOnlyList<byte[]> indexRgb)
+        {
+            customIndexRgb = indexRgb;
+        }
+
         #endregion
 
         #region private fields
@@ -413,7 +420,7 @@ namespace netDxf
         /// </remarks>
         public static IReadOnlyList<byte[]> IndexRgb
         {
-            get { return indexRgb; }
+            get { return customIndexRgb ?? indexRgb; }
         }
 
         #endregion
