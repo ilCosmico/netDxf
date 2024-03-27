@@ -36,8 +36,10 @@ public static void Main()
 ## Samples and Demos 
 Are contained in the source code.
 Well, at the moment they are just tests for the work in progress.
+## Unit Tests
+Are contained in the source code and must be executed with Release configuration.
 ## Dependencies and distribution 
-Multitarget project, predefined frameworks for Net Framework 4.8 and NET 6.0.
+Multitarget project, predefined frameworks for Net Framework 4.7.2, NET 6.0, NET 7.0, and NET 8.0.
 ## Compiling
 Visual Studio 2022. The solution file is still usable by Visual Studio 2019 but it does not support NET 6.0.
 netDxf is compatible with any net version from Net Framework 4.0.
