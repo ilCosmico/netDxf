@@ -5667,10 +5667,8 @@ namespace netDxf.IO
             switch (subclassMarker)
             {
                 case SubclassMarker.AlignedDimension:
-                    dim = this.ReadAlignedDimension(defPoint, normal);
-                    break;
                 case SubclassMarker.LinearDimension:
-                    dim = this.ReadLinearDimension(defPoint, normal);
+                    dim = this.ReadLinearOrAlignedDimension(defPoint, normal, subclassMarker);
                     break;
                 case SubclassMarker.RadialDimension:
                     dim = this.ReadRadialDimension(defPoint, normal);
@@ -6532,75 +6530,7 @@ namespace netDxf.IO
             return overrides;
         }
 
-        private AlignedDimension ReadAlignedDimension(Vector3 defPoint, Vector3 normal)
-        {
-            Vector3 firstRef = Vector3.Zero;
-            Vector3 secondRef = Vector3.Zero;
-            List<XData> xData = new List<XData>();
-
-            while (this.chunk.Code != 0)
-            {
-                switch (this.chunk.Code)
-                {
-                    case 13:
-                        firstRef.X = this.chunk.ReadDouble();
-                        this.chunk.Next();
-                        break;
-                    case 23:
-                        firstRef.Y = this.chunk.ReadDouble();
-                        this.chunk.Next();
-                        break;
-                    case 33:
-                        firstRef.Z = this.chunk.ReadDouble();
-                        this.chunk.Next();
-                        break;
-                    case 14:
-                        secondRef.X = this.chunk.ReadDouble();
-                        this.chunk.Next();
-                        break;
-                    case 24:
-                        secondRef.Y = this.chunk.ReadDouble();
-                        this.chunk.Next();
-                        break;
-                    case 34:
-                        secondRef.Z = this.chunk.ReadDouble();
-                        this.chunk.Next();
-                        break;
-                    case 1001:
-                        string appId = this.DecodeEncodedNonAsciiCharacters(this.chunk.ReadString());
-                        XData data = this.ReadXDataRecord(this.GetApplicationRegistry(appId));
-                        xData.Add(data);
-                        break;
-                    default:
-                        Debug.Assert(!(this.chunk.Code >= 1000 && this.chunk.Code <= 1071), "The extended data of an entity must start with the application registry code.");
-                        this.chunk.Next();
-                        break;
-                }
-            }
-
-            List<Vector3> ocsPoints = MathHelper.Transform(
-                new List<Vector3>
-                {
-                    firstRef, secondRef, defPoint
-                },
-                normal, CoordinateSystem.World, CoordinateSystem.Object);
-
-            AlignedDimension entity = new AlignedDimension
-            {
-                FirstReferencePoint = new Vector2(ocsPoints[0].X, ocsPoints[0].Y),
-                SecondReferencePoint = new Vector2(ocsPoints[1].X, ocsPoints[1].Y),
-                Elevation = ocsPoints[2].Z,
-                Normal = normal
-            };
-
-            entity.SetDimensionLinePosition(new Vector2(ocsPoints[2].X, ocsPoints[2].Y));
-
-            entity.XData.AddRange(xData);
-
-            return entity;
-        }
-
-        private LinearDimension ReadLinearDimension(Vector3 defPoint, Vector3 normal)
+        private Dimension ReadLinearOrAlignedDimension(Vector3 defPoint, Vector3 normal, string subclassMarker)
         {
             Vector3 firstRef = Vector3.Zero;
             Vector3 secondRef = Vector3.Zero;
@@ -6662,7 +6592,23 @@ namespace netDxf.IO
                 },
                 normal, CoordinateSystem.World, CoordinateSystem.Object);
 
-            LinearDimension entity = new LinearDimension
+            if (subclassMarker == SubclassMarker.AlignedDimension && rot == 0)
+            {
+                var aligned = new AlignedDimension
+                {
+                    FirstReferencePoint = new Vector2(ocsPoints[0].X, ocsPoints[0].Y),
+                    SecondReferencePoint = new Vector2(ocsPoints[1].X, ocsPoints[1].Y),
+                    Elevation = ocsPoints[2].Z,
+                    Normal = normal
+                };
+
+                aligned.SetDimensionLinePosition(new Vector2(ocsPoints[2].X, ocsPoints[2].Y));
+                aligned.XData.AddRange(xData);
+
+                return aligned;
+            }
+
+            var linear = new LinearDimension
             {
                 FirstReferencePoint = new Vector2(ocsPoints[0].X, ocsPoints[0].Y),
                 SecondReferencePoint = new Vector2(ocsPoints[1].X, ocsPoints[1].Y),
@@ -6671,11 +6617,10 @@ namespace netDxf.IO
                 Normal = normal
             };
 
-            entity.SetDimensionLinePosition(new Vector2(ocsPoints[2].X, ocsPoints[2].Y));
+            linear.SetDimensionLinePosition(new Vector2(ocsPoints[2].X, ocsPoints[2].Y));
+            linear.XData.AddRange(xData);
 
-            entity.XData.AddRange(xData);
-
-            return entity;
+            return linear;
         }
 
         private RadialDimension ReadRadialDimension(Vector3 defPoint, Vector3 normal)
