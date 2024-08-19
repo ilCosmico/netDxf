@@ -1,5 +1,29 @@
 ## Change history
 
+### [3.2.0 - 2024/08/24]
+
+* Added raw params to Ellipse. Added related test
+
+### [3.1.0 - 2024/03/28]
+
+* Pathfilename of unit test assets helper.
+* Improved dimension reading. Added unit tests.
+* AlignedDimension with a rotation are now read as LinearDimension.
+
+### [3.0.6 - 2024/03/24]
+
+* Update AciColor.cs
+* Added possibility to customize AciColor table.
+
+### [3.0.5 - 2024/03/20]
+
+* Fix for CodePage, Update target frameworks, Added strong naming
+* Added check for CodePage without underscore.
+* Changed target frameworks from net48 to net472. Added target framework net7.0.
+* Added signature for strong naming.
+
+### FORK to https://github.com/SearchAThing-forks/netDxf
+
 ### [3.0.1 - 2023/10/11]
 
 [2023/08/31]
@@ -35,7 +59,7 @@
 * Added an Arc constructor that takes a start point, an end point, and a bulge value to build the arc.
 * Added the methods MathHelper.ArcFromBulge and MathHelper.ArcToBulge.
 * The offset value for the AlignedDimension entity can now be positive or negative. The first and second reference point will not be swapped depending on the placement of the definition point, instead the sign of the offset will be changed.
-* The offset value for the LinearDimension entity can now be positive or negative. A negative offset is like adding 180º to the dimension rotation. The first and second reference point will not be swapped depending on the placement of the definition point, instead the sign of the offset will be changed.
+* The offset value for the LinearDimension entity can now be positive or negative. A negative offset is like adding 180ï¿½ to the dimension rotation. The first and second reference point will not be swapped depending on the placement of the definition point, instead the sign of the offset will be changed.
 * The offset value for the Angular3PointDimension can now be posibive or negative. A negative offset will measure the oposite arc angle. The first and second reference point will not be swapped depending on the placement of the definition point, instead the sign of the offset will be changed.
 * Now it is posible to initialize a HatchBoundaryPath directly form a list of HatchBoundaryPath.Edges.
 * When converting a Polyline2D containing arc segments the precision value defines the number of divisions for a full circle, therefore, the final number of divisions for the arc will depend on the angle of the arc. This way small arcs will have less divisions than larger ones.
@@ -319,7 +343,7 @@ The MathHelper.NormalizeAngle method will check if the normalized angle is very 
 * (fixed) Adding and removing the annotation of a leader, when it already belongs to a document, will be automatically add and remove, respectively, the entity from the document.
 * (fixed) When cloning a Viewport the frozen layers were not being cloned.
 * (fixed) When writing a DXF the Tolerance code 73 is 0 for both Text and MText annotations.
-* (fixed) Radial and Diametric dimensions not showing the "R" and "Ø" when no prefix is use in the dimension style.
+* (fixed) Radial and Diametric dimensions not showing the "R" and "ï¿½" when no prefix is use in the dimension style.
 * (fixed) The MLineStyleElements needs to be ordered from larger to smaller offset values.
 * (fixed) Bug when creating boundary paths for hatches when the normal was not the UnitZ (0,0,1).
 * (fixed) Only a single HatchBoundary.Edge of type Polyline can be used to initialize a hatch boundary, it also must always be closed.

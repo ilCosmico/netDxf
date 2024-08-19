@@ -1,5 +1,16 @@
 # netDxf
 netDxf Copyright(C) 2009-2023 Daniel Carvajal, licensed under MIT License
+
+- [Description](#description)
+- [Samples and Demos](#samples-and-demos)
+- [Unit Tests](#unit-tests)
+- [Dependencies and distribution](#dependencies-and-distribution)
+- [Compiling](#compiling)
+- [Development Status](#development-status)
+- [Supported DXF entities](#supported-dxf-entities)
+
+---
+
 ## Description
 netDxf is a .net library programmed in C# to read and write AutoCAD DXF files. It supports AutoCad2000, AutoCad2004, AutoCad2007, AutoCad2010,  AutoCad2013, and AutoCad2018 DXF database versions, in both text and binary format.
 
@@ -36,17 +47,23 @@ public static void Main()
 ## Samples and Demos 
 Are contained in the source code.
 Well, at the moment they are just tests for the work in progress.
+
 ## Unit Tests
 Are contained in the source code and must be executed with Release configuration.
+To run automated unit tests `dotnet test -c Release`.
+
 ## Dependencies and distribution 
 Multitarget project, predefined frameworks for Net Framework 4.7.2, NET 6.0, NET 7.0, and NET 8.0.
+
 ## Compiling
 Visual Studio 2022. The solution file is still usable by Visual Studio 2019 but it does not support NET 6.0.
 netDxf is compatible with any net version from Net Framework 4.0.
 If your desired version is not listed among the predefined frameworks manually edit the netdxf.csproj file and set the TargetFrameworks accordingly.
 When compiling for any of the Net Framework 4 family make sure that the constant NET4X is defined for your selected framework.
+
 ## Development Status 
-See [changelog.txt](https://github.com/haplokuon/netDxf/blob/master/doc/Changelog.txt) or the [wiki page](https://github.com/haplokuon/netDxf/wiki) for information on the latest changes.
+See [changelog.txt](https://github.com/SearchAThing-forks/netDxf/blob/devel0_new/doc/Changelog.txt) or the [wiki page](https://github.com/haplokuon/netDxf/wiki) for information on the latest changes.
+
 ## Supported DXF entities
 * 3dFace
 * Arc
