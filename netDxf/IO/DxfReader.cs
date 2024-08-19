@@ -7175,6 +7175,9 @@ namespace netDxf.IO
 
         private static void SetEllipseParameters(Ellipse ellipse, double[] param)
         {
+            ellipse.StartParamRaw = param[0];
+            ellipse.EndParamRaw = param[1];
+
             if (MathHelper.IsZero(param[0]) && MathHelper.IsEqual(param[1], MathHelper.TwoPI))
             {
                 ellipse.StartAngle = 0.0;
