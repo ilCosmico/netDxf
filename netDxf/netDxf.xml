@@ -5701,6 +5701,18 @@
             </summary>
             <remarks>To get a full ellipse set the end angle equal to the start angle.</remarks>
         </member>
+        <member name="P:netDxf.Entities.Ellipse.StartParamRaw">
+            <summary>
+            Gets or sets the ellipse start param as read from file in radians.
+            </summary>
+            <remarks>This value is 0.0 for a full ellipse. It is the value associated to the group code 41.</remarks>
+        </member>
+        <member name="P:netDxf.Entities.Ellipse.EndParamRaw">
+            <summary>
+            Gets or sets the ellipse end param as read from file in radians.
+            </summary>
+            <remarks>This value is 2*PI for a full ellipse. It is the value associated to the group code 42.</remarks>
+        </member>
         <member name="P:netDxf.Entities.Ellipse.Thickness">
             <summary>
             Gets or sets the ellipse thickness.

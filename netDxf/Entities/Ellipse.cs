@@ -327,6 +327,18 @@ namespace netDxf.Entities
         }
 
         /// <summary>
+        /// Gets or sets the ellipse start param as read from file in radians.
+        /// </summary>
+        /// <remarks>This value is 0.0 for a full ellipse. It is the value associated to the group code 41.</remarks>
+        public double StartParamRaw { get; set; }
+
+        /// <summary>
+        /// Gets or sets the ellipse end param as read from file in radians.
+        /// </summary>
+        /// <remarks>This value is 2*PI for a full ellipse. It is the value associated to the group code 42.</remarks>
+        public double EndParamRaw { get; set; }
+
+        /// <summary>
         /// Gets or sets the ellipse thickness.
         /// </summary>
         public double Thickness

@@ -20,6 +20,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Assets\ellipse.dxf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Assets\TestOrientedDim_1.dxf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
